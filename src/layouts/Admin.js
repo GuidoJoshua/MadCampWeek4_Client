@@ -35,7 +35,6 @@ import AuthLayout from "layouts/Auth.js"; // 추가한 레이아웃을 불러옵
 var ps;
 
 function Admin(props) {
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 

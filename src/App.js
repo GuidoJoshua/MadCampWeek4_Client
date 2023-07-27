@@ -6,7 +6,7 @@ import "assets/scss/now-ui-dashboard.scss?v1.5.0";
 import "assets/css/demo.css";
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth";
-import Login from "views/Login";
+// import Login from "views/Login";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);

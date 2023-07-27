@@ -11,9 +11,10 @@ const Login = ({ onLogin }) => {
 
   const navigate = useNavigate();
 
+
   const minseongSicImageStyle = {
     marginBottom: "20px", // Add some spacing below the image
-    width: "500px", // Adjust the width as needed
+    width: "400px", // Adjust the width as needed
   };
 
   const loginContainerStyle = {
@@ -56,6 +57,12 @@ const Login = ({ onLogin }) => {
     padding: "10px 20px",
     fontSize: "16px",
     cursor: "pointer",
+  };
+  const dmMessageStyle = {
+    fontSize: "18px",
+    fontFamily: "Arial, sans-serif", // You can change the font to any desired font
+    fontStyle: "italic",
+    marginTop: "10px",
   };
 
   useEffect(() => {
@@ -120,6 +127,10 @@ const Login = ({ onLogin }) => {
         <button type="button" onClick={handleLogin} style={loginButtonStyle}>
           로그인
         </button>
+        <div style={dmMessageStyle}>
+          회원 가입은 DM으로 부탁드립니다. 🙏
+        </div>
+
       </form>
     </div>
   );

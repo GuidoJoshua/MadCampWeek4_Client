@@ -122,15 +122,15 @@ function Dashboard() {
   });
 
   const [weekData, setWeekData] = React.useState({
-    labels: [`${dayNum-6}`, `${dayNum-5}`, `${dayNum-4}`, `${dayNum-3}`, `${dayNum-2}`, `${dayNum-1}`, `${dayNum}`],
+    labels: [`${dayNum-6}일`, `${dayNum-5}일`, `${dayNum-4}일`, `${dayNum-3}일`, `${dayNum-2}일`, `${dayNum-1}일`, `${dayNum}일`],
     datasets: [
       {
         label: "Data",
         data: [],
         borderColor: "#FFFFFF",
         pointBorderColor: "#FFFFFF",
-        pointBackgroundColor: "#2c2c2c",
-        pointHoverBackgroundColor: "#2c2c2c",
+        pointBackgroundColor: "#80b6f4",
+        pointHoverBackgroundColor: "#80b6f4",
         pointHoverBorderColor: "#FFFFFF",
         pointBorderWidth: 1,
         pointHoverRadius: 7,
@@ -173,7 +173,7 @@ function Dashboard() {
   // 데이터를 받아오는 비동기 함수 (예시로 setTimeout 사용)
   const fetchData = async () => {
     try{
-      const res = await axios.get("http://172.10.5.95:80/dashboard", {params: {UID : 2}})
+      const res = await axios.get("http://172.10.5.95:80/dashboard", {params: {UID : 1}})
 
       const receivedData = res.data;
       console.log(receivedData);
@@ -187,7 +187,7 @@ function Dashboard() {
           },
         ],
       });
-  
+      const monthdata = receivedData.weeklyCost.map((item) => item.total_cost);
       setMonthData({
         ...monthData,
         datasets: [
@@ -197,13 +197,13 @@ function Dashboard() {
           },
         ],
       });
-  
+      const weekdata = receivedData.recentCost.map((item) => item.total_cost);
       setWeekData({
         ...weekData,
         datasets: [
           {
             ...weekData.datasets[0],
-            data: receivedData.recentCost,
+            data: weekdata,
           },
         ],
       });

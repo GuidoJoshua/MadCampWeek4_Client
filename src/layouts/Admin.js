@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState } from "react";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
@@ -29,10 +29,20 @@ import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
 import routes from "routes.js";
+import AuthLayout from "layouts/Auth.js"; // 추가한 레이아웃을 불러옵니다.
+
 
 var ps;
 
 function Admin(props) {
+  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const checkAuth = () => {
+
+  };
+
   const location = useLocation();
   const [backgroundColor, setBackgroundColor] = React.useState("blue");
   const mainPanel = React.useRef();
@@ -53,9 +63,12 @@ function Admin(props) {
     document.scrollingElement.scrollTop = 0;
     mainPanel.current.scrollTop = 0;
   }, [location]);
+
   const handleColorClick = (color) => {
     setBackgroundColor(color);
   };
+  
+
   return (
     <div className="wrapper">
       <Sidebar {...props} routes={routes} backgroundColor={backgroundColor} />
@@ -66,7 +79,9 @@ function Admin(props) {
             return (
               <Route
                 path={prop.path}
-                element={prop.component}
+                element={
+                isLoggedIn ? prop.component : <Navigate to="/login" replace />
+              }
                 key={key}
                 exact
               />
@@ -74,8 +89,13 @@ function Admin(props) {
           })}
           <Route
             path="/admin"
-            element={<Navigate to="/admin/dashboard" replace />}
+            element={isLoggedIn ? <Navigate to="/admin/dashboard" replace /> : null}
           />
+          {/* <Route
+            path="/login" // 추가한 경로
+            // element={<AuthLayout />} // Auth 레이아웃으로 로그인 페이지를 렌더링합니다.
+            element={<Login onLogin={() => setIsLoggedIn(true)} />}
+          /> */}
         </Routes>
         <Footer fluid />
       </div>

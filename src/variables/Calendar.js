@@ -63,6 +63,17 @@ function Calendar() {
     closePopup();
   };
 
+  const deleteEvent = async (event) => {
+    try {
+      const res = await axios.delete("http://172.10.5.95:80/calendar/delete", {data : {HID: event.HID, UID: 1}})
+      console.log(res);
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+
+
 
   const startOfCurrentMonth = startOfMonth(currentMonth);
   const endOfCurrentMonth = endOfMonth(currentMonth);
@@ -86,7 +97,7 @@ function Calendar() {
     //     detail: 'MERRY CHRISTMAS',
     //     cost: 'A lot of gift!!!!',
     //     category: 'festivity',
-    //   },
+    //   }, 
     //   {
     //     date: '2023-05-04',
     //     detail: "LUCA'S BIRTHDAY",
@@ -126,18 +137,19 @@ function Calendar() {
     console.log(events);
   };
 
+
   const fillEventSidebar = (day) => {
-    // const thisDate = format(day, 'yyyy-MM-dd');
-    // const eventData = events.filter((event) => event.date === thisDate);
     console.log(events);
     const eventList = document.querySelector('.c-aside__eventList');
+  
     if (events.length > 0) {
       eventList.innerHTML = events
-        .map((event) => {
+        .map((event, index) => {
           const { detail, cost, category } = event;
+  
           return `
             <p class="c-aside__event c-aside__event--${category}">
-              ${detail} <span> • ${cost}</span>
+              ${detail} <span> • ${cost}₩</span> <span> • ${category}</span> <button class="delete-button" data-index="${index}">x</button>
             </p>
           `;
         })
@@ -145,7 +157,26 @@ function Calendar() {
     } else {
       eventList.innerHTML = '';
     }
+  
+    // Attach click event to the dynamically generated delete buttons
+    const deleteButtons = eventList.querySelectorAll('.delete-button');
+    deleteButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const index = event.target.dataset.index;
+        handleDeleteEvent(index);
+      });
+    });
   };
+  
+  const handleDeleteEvent = (index) => {
+    console.log(index);
+    deleteEvent(events[index]);
+    //해당 인덱스의 이벤트를 삭제
+    const updatedEvents = [...events];
+    console.log(updatedEvents.splice(index, 1));
+    setEvents(updatedEvents);
+  };
+    
 
   return (
     <div className='calendar-container'>

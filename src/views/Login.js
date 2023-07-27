@@ -73,6 +73,7 @@ const Login = ({ onLogin }) => {
       const res = await axios.post("http://172.10.5.95:80/login", data);
 
       console.log(res);
+      sessionStorage.setItem("UID", res.data.UID);
       console.log("사용자 이름", username);
       console.log("비밀번호", password);
 

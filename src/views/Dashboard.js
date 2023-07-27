@@ -54,6 +54,7 @@ import {
 import axios from 'axios';
 
 function Dashboard() {
+  const UID = sessionStorage.getItem("UID");
   const today = new Date();
 
   const weekNum = getWeekOfMonth(today);
@@ -173,7 +174,7 @@ function Dashboard() {
   // 데이터를 받아오는 비동기 함수 (예시로 setTimeout 사용)
   const fetchData = async () => {
     try{
-      const res = await axios.get("http://172.10.5.95:80/dashboard", {params: {UID : 1}})
+      const res = await axios.get("http://172.10.5.95:80/dashboard", {params: {UID : UID}})
 
       const receivedData = res.data;
       console.log(receivedData);

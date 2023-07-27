@@ -4,6 +4,7 @@ import '../assets/css/Calendar.css';
 import axios from 'axios';
 
 function Calendar() {
+  const UID = sessionStorage.getItem("UID");
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [events, setEvents] = useState([]);
@@ -17,7 +18,7 @@ function Calendar() {
 
   const getEvent = async (day) => {
     try {
-      const res = await axios.get("http://172.10.5.95:80/calendar/get", {params :{UID : 1, day : format(day, 'yyyy-MM-dd')}})
+      const res = await axios.get("http://172.10.5.95:80/calendar/get", {params :{UID : UID, day : format(day, 'yyyy-MM-dd')}})
       const receivedevents = res.data;
       setEvents(receivedevents);
     }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-// import minseongSicImage from "../path/to/your/image"; // Import the image file
+import Perisic from "../assets/img/Perisic.png"; // Import the image file
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
@@ -13,7 +13,7 @@ const Login = ({ onLogin }) => {
 
   const minseongSicImageStyle = {
     marginBottom: "20px", // Add some spacing below the image
-    width: "200px", // Adjust the width as needed
+    width: "500px", // Adjust the width as needed
   };
 
   const loginContainerStyle = {
@@ -94,7 +94,7 @@ const Login = ({ onLogin }) => {
   return (
     <div style={loginContainerStyle}>
         {/* Add the image above the heading */}
-      {/* <img src={minseongSicImage} alt="MinseongSic" style={minseongSicImageStyle} /> */}
+      <img src={Perisic} alt="MinseongSic" style={minseongSicImageStyle} />
       <h1 style={headingStyle}>Welcome to MinseongSic</h1>
       <form>
         <div style={formGroupStyle}>

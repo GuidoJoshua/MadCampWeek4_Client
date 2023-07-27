@@ -80,7 +80,7 @@ function Dashboard() {
     ],
     datasets: [
       {
-        label: "Data",
+        label: "Won",
         data: [],
         borderColor: "#FFFFFF",
         pointBorderColor: "#FFFFFF",
@@ -103,7 +103,7 @@ function Dashboard() {
     labels: ["1주차", "2주차", "3주차", "4주차"],
     datasets: [
       {
-        label: "Data",
+        label: "Won",
         data: [],
         borderColor: "#FFFFFF",
         pointBorderColor: "#FFFFFF",
@@ -126,7 +126,7 @@ function Dashboard() {
     labels: [`${dayNum-6}일`, `${dayNum-5}일`, `${dayNum-4}일`, `${dayNum-3}일`, `${dayNum-2}일`, `${dayNum-1}일`, `${dayNum}일`],
     datasets: [
       {
-        label: "Data",
+        label: "Won",
         data: [],
         borderColor: "#FFFFFF",
         pointBorderColor: "#FFFFFF",
@@ -149,7 +149,7 @@ function Dashboard() {
     labels: ["식비", "주거", "교통", "쇼핑", "의료", "여가", "기타"],
     datasets: [
       {
-        label: "Data",
+        label: "Won",
         data: [],
         borderColor: "#FFFFFF",
         pointBorderColor: "#FFFFFF",
@@ -273,8 +273,7 @@ function Dashboard() {
               </CardBody>
               <CardFooter>
                 <div className="stats">
-                  <i className="now-ui-icons arrows-1_refresh-69" /> Just
-                  Updated
+                  <i className="now-ui-icons ui-2_time-alarm" /> Last 4 weeks
                 </div>
               </CardFooter>
             </Card>
@@ -311,8 +310,7 @@ function Dashboard() {
               </CardBody>
               <CardFooter>
                 <div className="stats">
-                  <i className="now-ui-icons arrows-1_refresh-69" /> Just
-                  Updated
+                  <i className="now-ui-icons ui-2_time-alarm" /> Last 7 days
                 </div>
               </CardFooter>
             </Card>
@@ -333,13 +331,13 @@ function Dashboard() {
               </CardBody>
               <CardFooter>
                 <div className="stats">
-                  <i className="now-ui-icons ui-2_time-alarm" /> Last 7 days
+                  <i className="now-ui-icons ui-2_time-alarm" /> On this month
                 </div>
               </CardFooter>
             </Card>
           </Col>
         </Row>
-        <Row>
+        {/* <Row>
           <Col xs={12} md={6}>
             <Card className="card-tasks">
               <CardHeader>
@@ -548,7 +546,7 @@ function Dashboard() {
               </CardBody>
             </Card>
           </Col>
-        </Row>
+        </Row> */}
       </div>
     </>
   );
